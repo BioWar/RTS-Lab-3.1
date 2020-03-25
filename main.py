@@ -24,18 +24,18 @@ def calculate_ferma(n, verbose=False):
     b2 = a*a - n
     b = isqrt(n) # int(b2**0.5)
     count = 0
-    while b*b != b2:
+    while b*b != b2 and count < 10000:
         if verbose:
             print('Trying: a=%s b2=%s b=%s' % (a, b2, b))
         a = a + 1
         b2 = a*a - n
         b = isqrt(b2) # int(b2**0.5)
         count += 1
-    p=a+b
-    q=a-b
+    p = str(a+b) if count < 10000 else 'overload'
+    q = str(a-b) if count < 10000 else 'overload'
     #assert n == p * q
-    return {'number_1': str(p),
-	        'number_2': str(q)}
+    return {'number_1': p,
+	    'number_2': q}
 
 
 class Container(GridLayout):
